@@ -1,32 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Sitemap for the FACILITY OS 2003 portfolio.
-     URLs are intentionally relative-file references on purpose; when the
-     final domain is decided, replace each <loc> with the absolute URL,
-     e.g. https://example.com/index.html, and add a
-     "Sitemap: https://example.com/sitemap.xml" line to robots.txt. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>index.html</loc>
+    <loc>https://cv.gaechter.me/index.html</loc>
     <priority>1.0</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>projects.html</loc>
+    <loc>https://cv.gaechter.me/projects.html</loc>
     <priority>0.9</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>infrastructure.html</loc>
+    <loc>https://cv.gaechter.me/infrastructure.html</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>cv.html</loc>
+    <loc>https://cv.gaechter.me/cv.html</loc>
     <priority>0.9</priority>
     <changefreq>yearly</changefreq>
   </url>
   <url>
-    <loc>contact.html</loc>
+    <loc>https://cv.gaechter.me/contact.html</loc>
     <priority>0.5</priority>
     <changefreq>yearly</changefreq>
   </url>

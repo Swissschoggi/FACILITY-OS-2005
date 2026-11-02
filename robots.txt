@@ -11,3 +11,4 @@ Disallow: /package.json
 Disallow: /package-lock.json
 Disallow: /opencode-homelab-handoff/
 Disallow: /tmp/
+Sitemap: https://cv.gaechter.me/sitemap.xml
