@@ -29,6 +29,8 @@ secrets/
 .env
 .env.*
 !.env.example
+DESIGN_CONSTITUTION.md
+DESIGN_SPEC.md
 
 # ----------------------------------------------------------
 # NODE / PLAYWRIGHT dev tooling (not part of the site)

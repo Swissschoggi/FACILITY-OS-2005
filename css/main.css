@@ -3,6 +3,57 @@
    Tokens and materials per DESIGN_SPEC.md, applied structurally.
    ================================================================ */
 
+/* self-hosted fonts: no third-party request, no visitor IP to Google */
+@font-face {
+  font-family: "Michroma";
+  src: url("../assets/fonts/michroma-latin-400-normal.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Rajdhani";
+  src: url("../assets/fonts/rajdhani-latin-500-normal.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Rajdhani";
+  src: url("../assets/fonts/rajdhani-latin-600-normal.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Rajdhani";
+  src: url("../assets/fonts/rajdhani-latin-700-normal.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Encode Sans";
+  src: url("../assets/fonts/encode-sans-latin-400-normal.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Encode Sans";
+  src: url("../assets/fonts/encode-sans-latin-500-normal.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Share Tech Mono";
+  src: url("../assets/fonts/share-tech-mono-latin-400-normal.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   /* type */
   --f-display: "Michroma", "Eurostile", "Trebuchet MS", sans-serif;

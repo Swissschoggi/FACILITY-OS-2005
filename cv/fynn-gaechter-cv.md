@@ -1,6 +1,6 @@
 # Fynn Etienne Gächter
 **Informatiker EFZ & BSc Cybersecurity Student**  
-Wettswil am Albis, Switzerland | fynn.gaechter@gmail.com 
+Zürich, Switzerland | fynn.gaechter@gmail.com 
 [LinkedIn Profile](https://www.linkedin.com/in/fynn-g%C3%A4chter)
 
 ---
@@ -65,7 +65,7 @@ Informatiker EFZ with three years of practical hands-on experience in IT operati
   *Sept. 2026 – Oct. 2026*  
   Taught English and essential digital literacy/computer skills to children aged 7 to 17.
 * **Scout Leader (Pfadi Leiter)** | *Pfadi Albis & Felsenegg*  
-  *2020 – 2023 | Wettswil am Albis*  
+  *2020 – 2023 | Zürich*  
   Organized youth activities, outdoor camps, and team-building events.
 
 ---
