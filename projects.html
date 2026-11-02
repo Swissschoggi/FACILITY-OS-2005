@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self'; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'; " />
+
+  <title>Projects | Fynn Gaechter</title>
+  <meta name="description"
+    content="Selected projects of Fynn Gaechter: an iOS app with a Supabase backend, a containerized full-stack dive logbook and SQL database design coursework." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Michroma&family=Rajdhani:wght@500;600;700&family=Encode+Sans:wght@400;500&family=Share+Tech+Mono&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="icon" href="data:," />
+</head>
+
+<body>
+  <a class="skip-link" href="#projects">Skip to content</a>
+
+
+  <!-- ================= CONTROL FASCIA (top bar) ================= -->
+  <header class="fascia" id="topbar">
+    <div class="fs-top">
+      <a class="bp" href="index.html" aria-label="Facility OS home">
+        <span class="bp-chip" aria-hidden="true">FG</span>
+        <span class="bp-id">FACILITY&nbsp;OS<b>2005</b></span>
+      </a>
+
+      <nav class="tabrail" aria-label="Main navigation">
+        <ul>
+          <li><a class="ftab" href="index.html" aria-current="page">Home</a></li>
+          <li><a class="ftab is-live" href="projects.html">Projects</a></li>
+          <li><a class="ftab" href="infrastructure.html">Infrastructure</a></li>
+          <li><a class="ftab" href="cv.html">CV</a></li>
+          <li><a class="ftab" href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="fs-right">
+        <span class="f-lcd" id="navlcd" aria-hidden="true">&gt;&gt; P1 PROJECTS</span>
+        <span class="f-led" title="Console power indicator (chassis only)">
+          <i class="leddot leddot-green leddot-breathe" aria-hidden="true"></i><em>PWR</em>
+        </span>
+      </div>
+    </div>
+    <div class="fs-chan" aria-hidden="true"></div>
+  </header>
+
+
+  <main>
+
+    <!-- ================= BAND P1: PROJECT DOSSIERS ================= -->
+    <section class="band band-first" id="projects" data-band="P1" aria-labelledby="projects-title">
+      <div class="railhead">
+        <span class="rtag" aria-hidden="true">P1</span>
+        <span class="rname">Projects</span>
+        <span class="rlong"></span>
+        <span class="rmeta mono-sm">SELECTED WORK | DOSSIERS BELOW</span>
+      </div>
+
+      <div class="wrap">
+        <div class="projgrid">
+
+          <!-- ==================== BAR TAB ==================== -->
+          <article class="proj" id="bartab" aria-label="Project dossier BarTab">
+            <header class="proj-head">
+              <span class="sidx">P-01</span>
+              <h3 class="proj-name">BarTab</h3>
+              <span class="proj-kind">iOS drink price App</span>
+              <span class="proj-net">
+                <span class="proj-state"><i class="leddot leddot-unknown" aria-hidden="true"></i><em>Coming to the App
+                    Store whenever i got the money</em></span>
+                <a class="oplink" href="https://bartap.info" target="_blank" rel="noopener">bartap.info</a>
+                <a class="oplink" href="https://github.com/Swissschoggi/BarTab" target="_blank"
+                  rel="noopener">Repository</a>
+              </span>
+            </header>
+            <div class="proj-body">
+              <div class="proj-lines">
+                <div class="proj-line">
+                  <span class="plabel">Problem</span>
+                  <p>A drink in one Zurich bar can cost twice what the bar two tram stops away
+                    charges, and you only find out when the bill arrives. BarTab lets fellow ethanol enjoyers
+                    report what they actually paid, so anyone can look up a bar before
+                    ordering. Prices are crowdsourced, never scraped: trust is the point.</p>
+                </div>
+                <div class="proj-line">
+                  <span class="plabel">What I built</span>
+                  <p>The whole stack: a SwiftUI app with MapKit, a Supabase backend for auth, database
+                    and Edge Functions in TypeScript for waitlist and
+                    price alerts, the plain HTML site at bartap.info, and CI that builds the
+                    app on every push.</p>
+                </div>
+                <div class="proj-line">
+                  <span class="plabel">Decisions</span>
+                  <p>No ads and no paid ranking: bars cannot buy their way up. Old prices
+                    receive a re-confirmation prompt and sink in search when nobody confirms
+                    them any more, which keeps the map from going stale. The app is free, and
+                    the optional tip jar is the only paid surface.</p>
+                </div>
+                <div class="sm-meta">
+                  <span class="sm-chip">Swift</span>
+                  <span class="sm-chip">SwiftUI</span>
+                  <span class="sm-chip">SQL</span>
+                  <span class="sm-chip">GitHub</span>
+                </div>
+                <div class="proj-links">
+                  <a class="metalbtn" href="https://bartap.info" target="_blank" rel="noopener">bartap.info</a>
+                  <a class="metalbtn" href="https://github.com/Swissschoggi/BarTab" target="_blank"
+                    rel="noopener">Repository</a>
+                </div>
+              </div>
+              <div class="proj-side">
+                <div class="projmedia">
+                  <figure class="shot">
+                    <img src="assets/projects/bartab-discover.webp" alt="BarTab discover screen with nearby bars"
+                      width="480" height="1039" loading="lazy">
+                    <figcaption class="shotcap">Discover</figcaption>
+                  </figure>
+                  <figure class="shot">
+                    <img src="assets/projects/bartab-barview.webp" alt="BarTab bar page with drinks and prices"
+                      width="480" height="1039" loading="lazy">
+                    <figcaption class="shotcap">Bar page</figcaption>
+                  </figure>
+                  <figure class="shot">
+                    <img src="assets/projects/bartab-compare.webp" alt="BarTab price comparison between bars"
+                      width="480" height="1039" loading="lazy">
+                    <figcaption class="shotcap">Comparison</figcaption>
+                  </figure>
+                </div>
+                <p class="shotcap">Screens from the repository. App Store release pending.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- ==================== TAUCHE ==================== -->
+          <article class="proj" id="tauche" aria-label="Project dossier Tauche">
+            <header class="proj-head">
+              <span class="sidx">P-02</span>
+              <h3 class="proj-name">Tauche</h3>
+              <span class="proj-kind">Self-hosted dive logbook</span>
+              <span class="proj-net">
+                <span class="proj-state"><i class="leddot leddot-green" aria-hidden="true"></i><em>Live demo</em></span>
+                <a class="oplink" href="https://tauche.onrender.com" target="_blank"
+                  rel="noopener">tauche.onrender.com</a>
+                <a class="oplink" href="https://github.com/Swissschoggi/tauche" target="_blank"
+                  rel="noopener">Repository</a>
+              </span>
+            </header>
+            <div class="proj-body">
+              <div class="proj-lines">
+                <div class="proj-line">
+                  <span class="plabel">Problem</span>
+                  <p>Paper dive logs rot slowly while your dive data could at least answer
+                    questions: when did I last see this species, how deep did that site go, and
+                    which regulator is due for service. Or you want to let people know how much you paid to travel and
+                    explore one of the probably most expensive hobbies. Tauche makes all of it queryable, on
+                    the web, with the app self-hostable so other divers can run their log the
+                    same way.</p>
+                </div>
+                <div class="proj-line">
+                  <span class="plabel">What I built</span>
+                  <p>A full-stack application: backend on PostgreSQL, a
+                    React frontend, containerized with a Dockerfile and docker-compose. Dives get the full record: depth
+                    profile over time as an interactive SVG timeline, location mapping on
+                    OpenStreetMap, photo upload, marine life sightings with an aggregate
+                    dashboard (54 species to pick or add), and equipment with service
+                    intervals.</p>
+                </div>
+                <div class="proj-line">
+                  <span class="plabel">Decisions</span>
+                  <p>Self-hosted first: the deployment story is a compose file and an env
+                    file, no cloud lock-in beyond the demo host. The depth data drives the
+                    profile rendering straight from the recorded timestamps, so telemetry and
+                    logbook stay in one schema. I worked fast on this one with significant AI
+                    assistance; the schema and data model are the parts I understand deeply
+                    and vouch for, and rough edges get reported as issues when they show.</p>
+                </div>
+                <div class="sm-meta">
+                  <span class="sm-chip">React</span>
+                  <span class="sm-chip">PostgreSQL</span>
+                  <span class="sm-chip">OpenStreetMap</span>
+                  <span class="sm-chip">Docker</span>
+                </div>
+                <div class="proj-links">
+                  <a class="metalbtn" href="https://tauche.onrender.com" target="_blank" rel="noopener">Live demo</a>
+                  <a class="metalbtn" href="https://github.com/Swissschoggi/tauche" target="_blank"
+                    rel="noopener">Repository</a>
+                </div>
+              </div>
+              <div class="proj-side">
+                <div class="lcdmini" aria-label="Deployment readout">
+                  <b>DEPLOYMENT</b>
+                  <span>APP: SPRING BOOT 4 | FRONTEND: REACT</span>
+                  <span>DB: POSTGRESQL 15 | OSM MAPS</span>
+                  <span>DEPLOYMENT: DOCKER IMAGE</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- ==================== OST-BOT ==================== -->
+          <article class="proj" id="ost-bot" aria-label="Project dossier ost-bot">
+            <header class="proj-head">
+              <span class="sidx">P-03</span>
+              <h3 class="proj-name">ost-bot</h3>
+              <span class="proj-kind">Discord study bot</span>
+              <span class="proj-net">
+                <span class="proj-state"><i class="leddot leddot-unknown" aria-hidden="true"></i><em>Work in
+                    progress</em></span>
+                <a class="oplink" href="https://github.com/Swissschoggi/ost-bot" target="_blank"
+                  rel="noopener">Repository</a>
+              </span>
+            </header>
+            <div class="proj-body">
+              <div class="proj-lines">
+                <div class="proj-line">
+                  <span class="plabel">Problem</span>
+                  <p>Every new semester at OST, first-semester students ask the same questions:
+                    how module registration works, where grades and timetables live, which module follows which.
+                    The bot answers once, properly, and adds
+                    a lookup plus a place for the community's prof quotes.</p>
+                </div>
+                <div class="proj-line">
+                  <span class="plabel">What I built</span>
+                  <p>A discord.py bot with three slash commands. /faq serves the study
+                    resources through button-views instead of one wall of text. /modul_suche
+                    searches the module catalog and renders it as embeds with categories,
+                    focus tracks and recommended modules. /quote archives community prof
+                    quotes. A companion crawler pulls the public LOST.university module
+                    dataset, normalizes it, and writes the JSON files the bot serves.</p>
+                </div>
+                <div class="proj-line">
+                  <span class="plabel">Decisions</span>
+                  <p>Modules live as JSON flat files rather than a database: the deployment
+                    is a single container with a volume, and flat files keep it observable.
+                    The crawler applies hand-maintained corrections on top of the public
+                    dataset because module names and semester assignments had drifted from
+                    how the curriculum actually works. The bot token loads from an env file
+                    only, out of the repository. Built quickly with AI-assisted scaffolding
+                    and maintained by hand since.</p>
+                </div>
+                <div class="sm-meta">
+                  <span class="sm-chip">Python</span>
+                  <span class="sm-chip">discord.py</span>
+                  <span class="sm-chip">Docker</span>
+                </div>
+                <div class="proj-links">
+                  <a class="metalbtn" href="https://github.com/Swissschoggi/ost-bot" target="_blank"
+                    rel="noopener">Repository</a>
+                </div>
+              </div>
+              <div class="proj-side">
+                <div class="lcdmini" aria-label="Repository readout">
+                  <b>REPO CONTENTS</b>
+                  <span>ost-bot.py | CRAWLER: crawler.py</span>
+                  <span>data/ MODULE + FOCUS DATASETS</span>
+                  <span>Dockerfile + DOCKER-COMPOSE</span>
+                  <span>TOKEN: ENV FILE, NOT IN REPO</span>
+                </div>
+                <p class="shotcap">you can invite the bot lol</p>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= BAND P2: OTHER REPOS ================= -->
+    <section class="band" id="projects-more" data-band="P2" aria-labelledby="more-title">
+      <div class="railhead">
+        <span class="rtag" aria-hidden="true">P2</span>
+        <span class="rname">Also on GitHub</span>
+        <span class="rlong"></span>
+        <span class="rmeta mono-sm">SMALLER NOTES AND COURSE WORK</span>
+      </div>
+
+      <div class="wrap">
+        <p class="band-intro">
+          Smaller repositories without full dossiers:
+          notes, guides, domain utilities and experiments.
+        </p>
+
+        <div class="mgrid">
+          <article class="smod sm-6" aria-label="Repository strip">
+            <header class="sm-head"><span class="sidx">P-04</span>
+              <h4 class="sm-name">Repository Index</h4>
+            </header>
+            <div class="sm-body">
+              <ul class="sm-list" role="list">
+                <li><a class="oplink" href="https://github.com/Swissschoggi/swissselfhosted" target="_blank"
+                    rel="noopener">swissselfhosted</a> <em>compose files + selfhosting tips</em></li>
+                <li><a class="oplink" href="https://github.com/Swissschoggi/Markdown-cheatsheet" target="_blank"
+                    rel="noopener">Markdown-cheatsheet</a> <em>reference</em></li>
+              </ul>
+              <div class="sm-meta"><span class="sm-chip">github.com/Swissschoggi</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ================= DUMP STRIP (footer) ================= -->
+  <footer class="dump">
+    <div class="wrap dump-grid">
+      <span class="dump-brand">FACILITY OS 2005</span>
+      <span class="dump-note mono-sm">
+        PERSONAL DOCUMENTATION | ZONES: A1-B1-C1-D1-E1-F1-G1
+        | <a class="dumplink" href="mailto:fynn.gaechter@gmail.com">fynn.gaechter@gmail.com</a>
+        | <a class="dumplink" href="https://www.linkedin.com/in/fynn-g%C3%A4chter" target="_blank"
+          rel="noopener">LinkedIn</a>
+        | <a class="dumplink" href="https://github.com/Swissschoggi" target="_blank" rel="noopener">GitHub</a>
+      </span>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+
+</html>

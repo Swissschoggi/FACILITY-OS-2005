@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self'; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'; " />
+
+  <title>Infrastructure | Fynn Gaechter</title>
+  <meta name="description"
+    content="The home facility: Proxmox VE node, Unraid NAS, UniFi network and the service modules mounted into it, documented as deployed." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Michroma&family=Rajdhani:wght@500;600;700&family=Encode+Sans:wght@400;500&family=Share+Tech+Mono&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="icon" href="data:," />
+</head>
+
+<body>
+  <a class="skip-link" href="#architecture">Skip to content</a>
+
+
+  <!-- ================= CONTROL FASCIA (top bar) ================= -->
+  <header class="fascia" id="topbar">
+    <div class="fs-top">
+      <a class="bp" href="index.html" aria-label="Facility OS home">
+        <span class="bp-chip" aria-hidden="true">FG</span>
+        <span class="bp-id">FACILITY&nbsp;OS<b>2005</b></span>
+      </a>
+
+      <nav class="tabrail" aria-label="Main navigation">
+        <ul>
+          <li><a class="ftab" href="index.html" aria-current="page">Home</a></li>
+          <li><a class="ftab" href="projects.html">Projects</a></li>
+          <li><a class="ftab is-live" href="infrastructure.html">Infrastructure</a></li>
+          <li><a class="ftab" href="cv.html">CV</a></li>
+          <li><a class="ftab" href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="fs-right">
+        <span class="f-lcd" id="navlcd" aria-hidden="true">&gt;&gt; B1 ARCHITECTURE</span>
+        <span class="f-led" title="Console power indicator (chassis only)">
+          <i class="leddot leddot-green leddot-breathe" aria-hidden="true"></i><em>PWR</em>
+        </span>
+      </div>
+    </div>
+    <div class="fs-chan" aria-hidden="true"></div>
+  </header>
+
+
+  <main>
+    <!-- ================= BAND B1: ARCHITECTURE (two plates) ================= -->
+    <section class="band" id="architecture" data-band="B1" aria-labelledby="arch-title">
+      <div class="railhead">
+        <span class="rtag" aria-hidden="true">B1</span>
+        <span class="rname">Architecture</span>
+        <span class="rlong"></span>
+        <span class="rmeta mono-sm">TWO PLATES: NETWORK / 01 + COMPUTE / 02</span>
+      </div>
+
+      <div class="wrap">
+
+        <!-- ================= PLATE 01: NETWORK ================= -->
+        <figure class="platebox" id="diagram" role="figure"
+          aria-label="Plate 01 of the architecture, network organisation: a UniFi gateway fronts managed switching and three configured network segments; the core switch feeds an unmanaged downstream switch; three access points provide wireless coverage; two remote-access methods exist. Full text description in the collapsible panel below.">
+          <div class="plate-hd">
+            <span class="ptag">01</span>
+            <span class="pname">Network</span>
+            <span class="pnote mono-sm">GATEWAY | SWITCHING | SEGMENTS | ACCESS METHODS</span>
+          </div>
+
+          <div class="plate-md">
+
+            <!-- remote access methods: software, not equipment -->
+            <div class="accband" data-plate="net">
+              <div class="accchips">
+                <span class="plug">Cloudflare Tunnel</span>
+                <span class="plug">WireGuard</span>
+              </div>
+            </div>
+
+            <!-- gateway + core switch + downstream: physical spine -->
+            <div class="spine">
+              <div class="devslab u-strip-chrome">
+                <h3 class="dev-name">UDM Pro</h3>
+                <em class="dev-roles">GATEWAY | ROUTING | FIREWALL | CONTROLLER</em>
+              </div>
+
+              <div class="busflow" data-line="logical">
+                <span class="buschip">PHYSICAL: ONE PORT FEEDS THE UNIT BELOW</span>
+              </div>
+
+              <div class="devslab u-strip-alu">
+                <h3 class="dev-name">USW-Lite-16-PoE</h3>
+                <em class="dev-roles">CORE SWITCH</em>
+              </div>
+
+              <div class="busflow bus-dashed" data-line="physical">
+                <span class="buschip">PHYSICAL: ONE PORT FEEDS THE UNIT BELOW</span>
+              </div>
+
+              <div class="devslab u-strip-graphite dev-dim">
+                <h3 class="dev-name">Unmanaged Downstream Switch</h3>
+              </div>
+
+              <div class="apband">
+                <div class="aprow">
+                  <span class="aptower" aria-hidden="true"></span>
+                  <span class="aptower" aria-hidden="true"></span>
+                  <span class="aptower" aria-hidden="true"></span>
+                </div>
+                <p class="apnote">3 x nanoHD | WIRELESS COVERAGE FOR THE SEGMENTS: LOGICAL, NO CABLING DRAWN</p>
+              </div>
+            </div>
+
+            <!-- logical segments: configured on the gateway, not wiring -->
+            <div class="segband">
+              <div class="seghead">
+                <span class="segtag">LOGICAL SEGMENTS</span>
+                <span class="segnote">CONFIGURED ON THE UDM PRO</span>
+              </div>
+              <div class="segchips">
+                <span class="seg seg-main">Main</span>
+                <span class="seg seg-min">Guest</span>
+                <span class="seg seg-min">IoT</span>
+              </div>
+            </div>
+          </div>
+
+          <figcaption class="visually-hidden">
+            Plate 01, network organisation. A UniFi Dream Machine Pro serves as gateway,
+            router, firewall and network controller. A USW-Lite-16-PoE switch acts as the
+            core switch. One reported physical port on the core switch feeds an unmanaged
+            downstream switch. Three UniFi nanoHD access points
+            provide wireless coverage. Three network segments, Main, Guest and IoT,
+            are configured logically on the Dream Machine Pro. Cloudflare Tunnel and WireGuard allow remote access;
+            these are software paths.
+          </figcaption>
+        </figure>
+
+        <!-- ================= PLATE 02: COMPUTE ================= -->
+        <figure class="platebox plate-second" id="diagram-compute" role="figure"
+          aria-label="Plate 02 of the architecture, compute and storage: a Proxmox VE virtualization host with two VMs and nine containers, an Unraid NAS providing bulk storage on 12 terabyte disks with a ZFS cache, and an NFS share connecting the two. Full text description in the collapsible panel below.">
+          <div class="plate-hd">
+            <span class="ptag">02</span>
+            <span class="pname">Compute</span>
+            <span class="pnote mono-sm">VIRTUALIZATION | WORKLOAD TYPES | BULK STORAGE</span>
+          </div>
+
+          <div class="plate-md compute">
+
+            <!-- compute side -->
+            <div class="sideblock compute-side">
+              <div class="devslab u-strip-chrome">
+                <h3 class="dev-name">Proxmox VE 9.1</h3>
+                <em class="dev-roles">VIRTUALIZATION HOST | DEBIAN 13</em>
+              </div>
+              <div class="wtgroups">
+                <div class="wtcol">
+                  <span class="wtlabel">VIRTUAL MACHINES</span>
+                  <div class="wttabs">
+                    <span class="wttab">VM</span>
+                    <span class="wttab">VM</span>
+                  </div>
+                  <span class="wtcount mono-sm">2 TOTAL</span>
+                </div>
+                <div class="wtcol">
+                  <span class="wtlabel">CONTAINERS</span>
+                  <div class="wttabs">
+                    <span class="wttab">LXC</span><span class="wttab">LXC</span><span class="wttab">LXC</span>
+                    <span class="wttab">LXC</span><span class="wttab">LXC</span><span class="wttab">LXC</span>
+                    <span class="wttab">LXC</span><span class="wttab">LXC</span><span class="wttab">LXC</span>
+                  </div>
+                  <span class="wtcount mono-sm">9 TOTAL</span>
+                </div>
+              </div>
+              <p class="wtnote">WORKLOAD TYPES ARE A CATEGORY COUNT: INDIVIDUAL GUESTS LIVE IN RACK BAY C1.</p>
+            </div>
+
+            <!-- storage relation: the documented NFS export -->
+            <div class="busflow bus-nfs" data-line="storage">
+              <span class="buschip">NFS /Media EXPORT: PROXMOX + SELECTED CONTAINERS</span>
+            </div>
+
+            <!-- storage side -->
+            <div class="sideblock storage-side">
+              <div class="devslab u-strip-alu">
+                <h3 class="dev-name">Unraid 7.2.0</h3>
+                <em class="dev-roles">NAS | BULK STORAGE</em>
+              </div>
+              <p class="arnote">5 x ~12TB DATA DISKS | SINGLE ZFS CACHE | NO PARITY DISK CONFIGURED</p>
+            </div>
+          </div>
+
+          <figcaption class="visually-hidden">
+            Plate 02, compute and storage. The compute side is a Proxmox VE 9.1
+            virtualization host on Debian 13 that currently runs two virtual machines and
+            nine containers; the individual guests are tabulated in the Proxmox rack bay
+            in this page's platform section. The storage side is an Unraid 7.2.0 NAS that
+            provides bulk storage on five 12 terabyte data disks plus a single ZFS cache,
+            with no parity disk configured cause i'm a bad boy with too much storage. The storage
+            relationship between
+            them is an NFS share of the media volume that Proxmox and selected containers
+            consume. Compute and storage are separate platforms; neither depends on the
+            other for administration.
+          </figcaption>
+        </figure>
+
+        <details class="sc-details">
+          <summary>Text description of both architecture plates</summary>
+          <div class="sc-details-body">
+            <p> Plate 01, network organisation. A UniFi Dream Machine Pro serves as gateway,
+              router, firewall and network controller. A USW-Lite-16-PoE switch acts as the
+              core switch. One reported physical port on the core switch feeds an unmanaged
+              downstream switch. Three UniFi nanoHD access points
+              provide wireless coverage. Three network segments, Main, Guest and IoT,
+              are configured logically on the Dream Machine Pro. Cloudflare Tunnel and WireGuard allow remote access;
+              these are software paths.</p>
+            <p> Plate 02, compute and storage. The compute side is a Proxmox VE 9.1
+              virtualization host on Debian 13 that currently runs two virtual machines and
+              nine containers; the individual guests are tabulated in the Proxmox rack bay
+              in this page's platform section. The storage side is an Unraid 7.2.0 NAS that
+              provides bulk storage on five 12 terabyte data disks plus a single ZFS cache,
+              with no parity disk configured cause i'm a bad boy with too much storage. The storage
+              relationship between
+              them is an NFS share of the media volume that Proxmox and selected containers
+              consume. Compute and storage are separate platforms; neither depends on the
+              other for administration.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ================= BAND C1: PLATFORM / RACK UNIT ================= -->
+    <section class="band" id="platform" data-band="C1" aria-labelledby="platform-title">
+      <div class="railhead">
+        <span class="rtag" aria-hidden="true">C1</span>
+        <span class="rname">Platform</span>
+        <span class="rlong"></span>
+        <span class="rmeta mono-sm">RACK BAY PX-01</span>
+      </div>
+
+      <div class="wrap">
+        <div class="rack">
+          <div class="rack-ear ear-l" aria-hidden="true"><i></i><i></i></div>
+
+          <div class="unitface">
+            <div class="uf-head">
+              <div class="uf-brand">
+                <h3 class="uf-name">Proxmox VE 9.1.0</h3>
+                <p class="uf-model mono-sm">HYPERVISOR NODE | DEBIAN 13 | INTEL CORE i3-10105 | 8 LOGICAL CPUs</p>
+              </div>
+              <div class="lcdmini uf-counts" aria-label="Platform guest summary">
+                <b>GUESTS</b>
+                <span>PLATFORM: 2 VMS + 9 CONTAINERS</span>
+              </div>
+            </div>
+
+            <div class="uf-vents" aria-hidden="true"></div>
+
+            <div class="uf-body">
+              <div class="uf-side" aria-hidden="true">
+                <span class="side-engrave">PX-01</span>
+              </div>
+
+              <div class="uf-main">
+                <div class="subdisplays">
+                  <div class="lcdmini"><b>ZFS</b><span>steam_cache1: ZFS MIRROR | ~2.05TB AVAILABLE</span></div>
+                  <div class="lcdmini"><b>LVM</b><span>LOCAL LVM-THIN: VM + CONTAINER DISKS</span></div>
+                  <div class="lcdmini"><b>NET</b><span>SINGLE MANAGED BRIDGE | ONE PHYSICAL NIC</span></div>
+                </div>
+
+                <p class="slot-note">
+                  THIS BAY DESCRIBES THE PLATFORM AS DEPLOYED. IT IS NOT A LIVE MONITORING PANEL.
+                </p>
+
+                <div class="slotcage" role="list" aria-label="Deployed hypervisor guests">
+                  <div class="slotrow" data-state="run">
+                    <h4><button class="slot btn-slot" aria-expanded="false">
+                        <span class="fingers" aria-hidden="true"></span>
+                        <span class="ledwin"><i class="leddot leddot-green"></i></span>
+                        <span class="gtype">VM</span>
+                        <span class="gid">100</span>
+                        <span class="gname">Home Assistant OS</span>
+                        <span class="gstate">Running</span>
+                        <span class="slot-chev" aria-hidden="true"></span>
+                      </button></h4>
+                    <div class="slot-drawer">
+                      <p>Appliance VM attached to the managed bridge.</p>
+                    </div>
+                  </div>
+
+                  <div class="slotrow" data-state="run">
+                    <h4><button class="slot btn-slot" aria-expanded="false">
+                        <span class="fingers" aria-hidden="true"></span>
+                        <span class="ledwin"><i class="leddot leddot-green"></i></span>
+                        <span class="gtype">LXC</span>
+                        <span class="gid">101</span>
+                        <span class="gname">Plex</span>
+                        <span class="gstate">Running</span>
+                        <span class="slot-chev" aria-hidden="true"></span>
+                      </button></h4>
+                    <div class="slot-drawer">
+                      <p>Dedicated container with NVIDIA device passthrough; media comes from the Unraid NAS over NFS.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="slotrow" data-state="run">
+                    <h4><button class="slot btn-slot" aria-expanded="false">
+                        <span class="fingers" aria-hidden="true"></span>
+                        <span class="ledwin"><i class="leddot leddot-green"></i></span>
+                        <span class="gtype">LXC</span>
+                        <span class="gid">106</span>
+                        <span class="gname">Sonarr / Radarr</span>
+                        <span class="gstate">Running</span>
+                        <span class="slot-chev" aria-hidden="true"></span>
+                      </button></h4>
+                    <div class="slot-drawer">
+                      <p>This is legal dont worry big dawg.</p>
+                    </div>
+                  </div>
+
+                  <div class="slotrow" data-state="run">
+                    <h4><button class="slot btn-slot" aria-expanded="false">
+                        <span class="fingers" aria-hidden="true"></span>
+                        <span class="ledwin"><i class="leddot leddot-green"></i></span>
+                        <span class="gtype">LXC</span>
+                        <span class="gid">107</span>
+                        <span class="gname">Ollama</span>
+                        <span class="gstate">Running</span>
+                        <span class="slot-chev" aria-hidden="true"></span>
+                      </button></h4>
+                    <div class="slot-drawer">
+                      <p>My absolutely horrible local AI models.</p>
+                    </div>
+                  </div>
+
+                  <div class="slotrow" data-state="run">
+                    <h4><button class="slot btn-slot" aria-expanded="false">
+                        <span class="fingers" aria-hidden="true"></span>
+                        <span class="ledwin"><i class="leddot leddot-green"></i></span>
+                        <span class="gtype">LXC</span>
+                        <span class="gid">109</span>
+                        <span class="gname">WireGuard</span>
+                        <span class="gstate">Running</span>
+                        <span class="slot-chev" aria-hidden="true"></span>
+                      </button></h4>
+                    <div class="slot-drawer">
+                      <p>VPN path for remote access.</p>
+                    </div>
+                  </div>
+
+                  <div class="slotrow" data-state="run">
+                    <h4><button class="slot btn-slot" aria-expanded="false">
+                        <span class="fingers" aria-hidden="true"></span>
+                        <span class="ledwin"><i class="leddot leddot-green"></i></span>
+                        <span class="gtype">LXC</span>
+                        <span class="gid">110</span>
+                        <span class="gname">Docker host</span>
+                        <span class="gstate">Running</span>
+                        <span class="slot-chev" aria-hidden="true"></span>
+                      </button></h4>
+                    <div class="slot-drawer">
+                      <p>Primary application container: Ubuntu 22.04, 8 vCPU and 64 GB RAM allocated, managed through
+                        Docker and Portainer.</p>
+                    </div>
+                  </div>
+
+                  <div class="slotrow" data-state="run">
+                    <h4><button class="slot btn-slot" aria-expanded="false">
+                        <span class="fingers" aria-hidden="true"></span>
+                        <span class="ledwin"><i class="leddot leddot-green"></i></span>
+                        <span class="gtype">LXC</span>
+                        <span class="gid">111</span>
+                        <span class="gname">AdGuard</span>
+                        <span class="gstate">Running</span>
+                        <span class="slot-chev" aria-hidden="true"></span>
+                      </button></h4>
+                    <div class="slot-drawer">
+                      <p>Less Ads and stuff.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="uf-foot mono-sm">
+              <span>BAY PX-01 | BUILT ON PROXMOX VE 9.1.0</span>
+            </div>
+          </div>
+
+          <div class="rack-ear ear-r" aria-hidden="true"><i></i><i></i></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= BAND D1: SERVICES / MODULE RACK ================= -->
+  <section class="band" id="services" data-band="D1" aria-labelledby="services-title">
+    <div class="railhead">
+      <span class="rtag" aria-hidden="true">D1</span>
+      <span class="rname">Services</span>
+      <span class="rlong"></span>
+      <span class="rmeta mono-sm">MODULE RACK | MOUNTS PX-01 + NAS-01</span>
+    </div>
+
+    <div class="wrap">
+      <p class="band-intro">
+        The service modules below mount into the same facility as the chassis in C1.
+        They describe the deployment as operated: what runs, where it mounts, and the
+        role it fills.
+      </p>
+
+      <div class="mshelf">
+
+        <!-- GROUP A: MEDIA -->
+        <div class="mgroup">
+          <div class="mgroup-head">
+            <span class="mgidx">D1-A</span>
+            <h3 class="mgname">Media</h3>
+          </div>
+          <div class="mgrid">
+
+            <article class="smod sm-7" aria-label="Module M-01 Plex media server">
+              <header class="sm-head">
+                <span class="sidx">M-01</span>
+                <h4 class="sm-name">Plex Media Server</h4>
+              </header>
+              <div class="sm-body sm-body-2col">
+                <div class="sm-col">
+                  <p class="sm-desc">Dedicated container with NVIDIA device passthrough, media comes from the Unraid NAS
+                    over NFS.</p>
+                  <div class="sm-meta">
+                    <span class="sm-chip">NVIDIA passthrough</span>
+                  </div>
+                </div>
+                <div class="sm-col">
+                  <div class="lcdmini" aria-label="Media engine readout">
+                    <b>MEDIA ENGINE</b>
+                    <span>LXC 101 PLEX | RUNNING</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="smod sm-5" aria-label="Module M-02 Sonarr and Radarr">
+              <header class="sm-head">
+                <span class="sidx">M-02</span>
+                <h4 class="sm-name">Sonarr / Radarr</h4>
+              </header>
+              <div class="sm-body">
+                <p class="sm-desc">This is legal dont worry big dawg.</p>
+                <div class="sm-meta"><span class="sm-chip">pirating lol</span><span class="sm-chip">torrent</span></div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <div class="group-seam" aria-hidden="true"></div>
+
+        <!-- GROUP B: ACCESS & NETWORK -->
+        <div class="mgroup">
+          <div class="mgroup-head">
+            <span class="mgidx">D1-B</span>
+            <h3 class="mgname">Access &amp; Network</h3>
+          </div>
+          <div class="mgrid">
+
+            <article class="smod sm-4" aria-label="Module M-03 AdGuard DNS filtering">
+              <header class="sm-head">
+                <span class="sidx">M-03</span>
+                <h4 class="sm-name">AdGuard</h4>
+              </header>
+              <div class="sm-body">
+                <p class="sm-desc">DNS filtering.</p>
+                <div class="sm-meta"><span class="sm-chip">less ads</span><span class="sm-chip">dns</span></div>
+              </div>
+            </article>
+
+            <article class="smod sm-4" aria-label="Module M-04 WireGuard VPN path">
+              <header class="sm-head">
+                <span class="sidx">M-04</span>
+                <h4 class="sm-name">WireGuard</h4>
+              </header>
+              <div class="sm-body">
+                <p class="sm-desc">VPN path for remote access.</p>
+                <div class="sm-meta"><span class="sm-chip">VPN</span></div>
+              </div>
+            </article>
+
+            <article class="smod sm-4" aria-label="Module M-05 Cloudflare Tunnel access">
+              <header class="sm-head">
+                <span class="sidx">M-05</span>
+                <h4 class="sm-name">Cloudflare Tunnel</h4>
+              </header>
+              <div class="sm-body">
+                <p class="sm-desc">Remote access.</p>
+                <div class="sm-meta"><span class="sm-chip">Remote access</span></div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <div class="group-seam" aria-hidden="true"></div>
+
+        <!-- GROUP C: HOME & HOUSEHOLD -->
+        <div class="mgroup">
+          <div class="mgroup-head">
+            <span class="mgidx">D1-C</span>
+            <h3 class="mgname">Home &amp; Household</h3>
+          </div>
+          <div class="mgrid">
+
+            <article class="smod sm-4" aria-label="Module M-06 Home Assistant OS">
+              <header class="sm-head">
+                <span class="sidx">M-06</span>
+                <h4 class="sm-name">Home Assistant OS</h4>
+              </header>
+              <div class="sm-body">
+                <p class="sm-desc">Home Automation</p>
+                <div class="sm-meta"><span class="sm-chip">Home automation</span></div>
+              </div>
+            </article>
+
+            <article class="smod sm-4" aria-label="Module M-07 Mealie">
+              <header class="sm-head">
+                <span class="sidx">M-07</span>
+                <h4 class="sm-name">Mealie</h4>
+              </header>
+              <div class="sm-body">
+                <p class="sm-desc">Recipe manager.</p>
+                <div class="sm-meta"><span class="sm-chip">Yummy</span></div>
+
+              </div>
+            </article>
+
+            <article class="smod sm-4" aria-label="Module M-08 Dashwise">
+              <header class="sm-head">
+                <span class="sidx">M-08</span>
+                <h4 class="sm-name">Dossier</h4>
+              </header>
+              <div class="sm-body">
+                <p class="sm-desc">Probably how i discovered and prepared for the job application you got.</p>
+                <div class="sm-meta"><span class="sm-chip">J*b</span></div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <div class="group-seam" aria-hidden="true"></div>
+
+        <!-- GROUP D: COMPUTE & OPS -->
+        <div class="mgroup">
+          <div class="mgroup-head">
+            <span class="mgidx">D1-D</span>
+            <h3 class="mgname">Compute &amp; Ops</h3>
+          </div>
+          <div class="mgrid">
+
+            <article class="smod sm-8 sm-carry" aria-label="Module M-09 Docker host tray">
+              <header class="sm-head">
+                <span class="sidx">M-09</span>
+                <h4 class="sm-name">Docker Host Tray</h4>
+              </header>
+              <div class="sm-body">
+                <div class="mounttray" aria-label="Unraid mounts">
+                  <span class="mtray-tag">mounts</span>
+                  <span class="mount"><b>/Media</b></span>
+
+                </div>
+                <div class="lcdmini" aria-label="Docker host platform readout">
+                  <b>PLATFORM</b>
+                  <span>UBUNTU 22.04 | 8 vCPU / 64 GB RAM ALLOCATED | DOCKER + PORTAINER</span>
+                </div>
+                <p class="backnote mono-sm">MOUNTS AS DEPLOYED.</p>
+              </div>
+            </article>
+
+            <article class="smod sm-4" aria-label="Module M-10 Ollama">
+              <header class="sm-head">
+                <span class="sidx">M-10</span>
+                <h4 class="sm-name">Ollama</h4>
+              </header>
+              <div class="sm-body">
+                <p class="sm-desc">I dont have enough money for a good GPU and the power consumption a useful model
+                  would need but i can LARP!!</p>
+                <div class="sm-meta"><span class="sm-chip">AI</span><span class="sm-chip">Ollama</span></div>
+              </div>
+            </article>
+
+            <article class="smod sm-4" aria-label="Module M-11 Portainer">
+              <header class="sm-head">
+                <span class="sidx">M-11</span>
+                <h4 class="sm-name">Portainer</h4>
+              </header>
+              <div class="sm-body">
+                <p class="sm-desc">Docker Container management.</p>
+                <div class="sm-meta"><span class="sm-chip">Docker</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="smod sm-8" aria-label="Module EX-01 external deployment note">
+              <header class="sm-head">
+                <span class="sidx">EX-01</span>
+                <h4 class="sm-name">External Deployment</h4>
+                Detail</em></span>
+              </header>
+              <div class="sm-body">
+                <p class="sm-desc">Some workloads run on separate externally hosted infrastructure. No provider,
+                  location or service detail is published for security bleh.</p>
+                <div class="sm-meta"><span class="sm-chip">Mention only</span></div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <div class="group-seam" aria-hidden="true"></div>
+
+        <!-- GROUP E: DATA -->
+        <div class="mgroup">
+          <div class="mgroup-head">
+            <span class="mgidx">D1-E</span>
+            <h3 class="mgname">Data</h3>
+          </div>
+          <div class="mgrid">
+
+
+            <article class="smod sm-4" aria-label="Module M-13 bitmagnet">
+              <header class="sm-head">
+                <span class="sidx">M-13</span>
+                <h4 class="sm-name">bitmagnet</h4>
+              </header>
+              <div class="sm-body">
+                <p class="sm-desc">Runs on the NAS with its Postgres and web components.</p>
+                <div class="sm-meta"><span class="sm-chip">NAS-01</span></div>
+              </div>
+            </article>
+
+            <article class="smod sm-4" aria-label="Module M-14 Karakeep">
+              <header class="sm-head">
+                <span class="sidx">M-14</span>
+                <h4 class="sm-name">Karakeep</h4>
+              </header>
+              <div class="sm-body">
+                <p class="sm-desc">Runs on the NAS.</p>
+                <div class="sm-meta"><span class="sm-chip">NAS-01</span></div>
+              </div>
+            </article>
+
+            <article class="smod sm-4" aria-label="Module M-15 AliasVault">
+              <header class="sm-head">
+                <span class="sidx">M-15</span>
+                <h4 class="sm-name">AliasVault</h4>
+              </header>
+              <div class="sm-body">
+                <p class="sm-desc">Runs on the NAS.</p>
+                <div class="sm-meta"><span class="sm-chip">NAS-01</span></div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= BAND E1: METHOD / SERVICE DOCS ================= -->
+  <section class="band" id="method" data-band="E1" aria-labelledby="method-title">
+    <div class="railhead">
+      <span class="rtag" aria-hidden="true">E1</span>
+      <span class="rname" id="method-title">Method</span>
+      <span class="rlong"></span>
+      <span class="rmeta mono-sm">SERVICE DOCUMENTATION DRAWER</span>
+    </div>
+
+    <div class="wrap">
+      <p class="band-intro">
+        How allat is run.
+      </p>
+
+      <div class="method-grid">
+
+        <div class="mplates">
+
+          <article class="smod mplate" aria-label="Method plate 01 ownership and documentation">
+            <button class="btn-slot mplate-head" aria-expanded="false">
+              <span class="mnum" aria-hidden="true">01</span>
+              <span class="mplate-name">Ownership &amp; Documentation</span>
+              <span class="slot-chev" aria-hidden="true"></span>
+            </button>
+            <div class="slot-drawer">
+              <p>
+                The facility is planned, operated and documented by one person. Changes and decisions live in my head
+                mostly...
+                This page is part of the effort to document tho.
+              </p>
+            </div>
+          </article>
+
+          <article class="smod mplate" aria-label="Method plate 03 care-informed automation">
+            <button class="btn-slot mplate-head" aria-expanded="false">
+              <span class="mnum" aria-hidden="true">03</span>
+              <span class="mplate-name">Care-Informed Automation</span>
+              <span class="slot-chev" aria-hidden="true"></span>
+            </button>
+            <div class="slot-drawer">
+              <p>
+                Almost no automation, so when i decide to go bakcpack for a few months i'm pretty much f*cked.
+              </p>
+            </div>
+          </article>
+
+          <article class="smod mplate" aria-label="Method plate 04 troubleshooting record">
+            <button class="btn-slot mplate-head" aria-expanded="false">
+              <span class="mnum" aria-hidden="true">04</span>
+              <span class="mplate-name">Troubleshooting Record</span>
+              <span class="slot-chev" aria-hidden="true"></span>
+            </button>
+            <div class="slot-drawer">
+              <p>
+                You wont believe the amount of sleepless nights i had to fix some mondane issue...
+              </p>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="queue screen">
+          <div class="screen-lip">
+            <div class="screen-glass">
+              <p class="sc-head">OPEN ITEMS</p>
+              <div class="sc-lines" role="list">
+                <p role="listitem"><span>Q-01</span><b>EXPOSURE REVIEW: PORT FORWARDS</b></p>
+                <p role="listitem"><span>Q-02</span><b>LAN RENUMBER PLAN (RFC1918)</b></p>
+                <p role="listitem"><span>Q-03</span><b>EXPLORE, HAVE FUN AND EXPEIMENT NEW THINGS</b></p>
+              </div>
+            </div>
+          </div>
+          <p class="sc-foot mono-sm">THE QUEUE IS REAL, UNFINISHED WORK. A CONSOLE THAT ONLY SHOWS GREEN IS NOT
+            CREDIBLE.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+
+  </main>
+
+
+  <!-- ================= DUMP STRIP (footer) ================= -->
+  <footer class="dump">
+    <div class="wrap dump-grid">
+      <span class="dump-brand">FACILITY OS 2005</span>
+      <span class="dump-note mono-sm">
+        PERSONAL DOCUMENTATION | ZONES: A1-B1-C1-D1-E1-F1-G1
+        | <a class="dumplink" href="mailto:fynn.gaechter@gmail.com">fynn.gaechter@gmail.com</a>
+        | <a class="dumplink" href="https://www.linkedin.com/in/fynn-g%C3%A4chter" target="_blank"
+          rel="noopener">LinkedIn</a>
+        | <a class="dumplink" href="https://github.com/Swissschoggi" target="_blank" rel="noopener">GitHub</a>
+      </span>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+
+</html>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self'; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'; " />
+
+  <title>Fynn Gaechter | Personal portfolio</title>
+  <meta name="description"
+    content="Personal portfolio of Fynn Gaechter: Linux IT operations, infrastructure engineering and software projects, built around a self-run homelab." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Michroma&family=Rajdhani:wght@500;600;700&family=Encode+Sans:wght@400;500&family=Share+Tech+Mono&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="icon" href="data:," />
+</head>
+
+<body>
+  <a class="skip-link" href="#home">Skip to content</a>
+
+
+  <!-- ================= CONTROL FASCIA (top bar) ================= -->
+  <header class="fascia" id="topbar">
+    <div class="fs-top">
+      <a class="bp" href="index.html" aria-label="Facility OS home">
+        <span class="bp-chip" aria-hidden="true">FG</span>
+        <span class="bp-id">FACILITY&nbsp;OS<b>2005</b></span>
+      </a>
+
+      <nav class="tabrail" aria-label="Main navigation">
+        <ul>
+          <li><a class="ftab is-live" href="index.html" aria-current="page">Home</a></li>
+          <li><a class="ftab" href="projects.html">Projects</a></li>
+          <li><a class="ftab" href="infrastructure.html">Infrastructure</a></li>
+          <li><a class="ftab" href="cv.html">CV</a></li>
+          <li><a class="ftab" href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="fs-right">
+        <span class="f-lcd" id="navlcd" aria-hidden="true">&gt;&gt; A1 PERSONAL FRONT</span>
+        <span class="f-led" title="Console power indicator (chassis only)">
+          <i class="leddot leddot-green leddot-breathe" aria-hidden="true"></i><em>PWR</em>
+        </span>
+      </div>
+    </div>
+    <div class="fs-chan" aria-hidden="true"></div>
+  </header>
+
+
+  <main>
+
+    <!-- ================= BAND A1: PERSONAL FRONT ================= -->
+    <section class="band band-front" id="home" data-band="A1" aria-labelledby="person-title">
+      <div class="railhead">
+        <span class="rtag" aria-hidden="true">A1</span>
+        <span class="rname">Personal Front</span>
+        <span class="rlong"></span>
+        <span class="rmeta mono-sm">FYNN GAECHTER | PORTFOLIO</span>
+      </div>
+
+      <div class="wrap front-grid">
+        <div class="front-name">
+          <div class="np">
+            <div class="np-chip" aria-hidden="true">FG</div>
+            <div class="np-id">
+              <p class="np-kicker" id="person-title">Operator Profile</p>
+              <h1 class="np-facility chrome-letters">Fynn&nbsp;G&auml;chter</h1>
+              <p class="np-etch mono-sm">INFORMATIKER EFZ | HOMELABBER & GEEK | OST BSc CYBERSECURITY</p>
+            </div>
+          </div>
+
+          <div class="np-foot">
+            <p class="front-copy">
+              Hello, I'm Fynn. Ever since i was a little dude i was fascinated by technology.
+              I wanted to experiment, use and test whatever i could get my hands on.
+              Starting off humble my expertise and my hardware grew rapidly. But so did my interest
+              for technology.
+            </p>
+            <p class="front-copy">
+              This website is supposed to represent me as a person and my interest in technology.
+              Especially i'd like to highlight my magnum opus, my homelab. I built it,
+              broke parts of it, and fixed them again. Documenting it is
+              part of running it, so the infrastructure page is written in the same plain
+              language my own records use.
+            </p>
+            <p class="front-copy">
+              I am finishing a BSc in Cybersecurity at OST on a gap year and I am looking
+              for a team, or a place where my interests are met and my skills can be of use.
+            </p>
+          </div>
+        </div>
+
+        <div class="hero-screen screen">
+          <div class="screen-lip">
+            <div class="screen-glass">
+              <p class="sc-head">OPERATOR RECORD</p>
+              <div class="sc-lines" role="list">
+                <p role="listitem"><span>TRADE</span><b>INFORMATIKER EFZ, IT OPERATIONS</b></p>
+                <p role="listitem"><span>SUPPORT</span><b>MY FAMILY CANT STOP ASKING FOR IT</b></p>
+                <p role="listitem"><span>STUDY</span><b>BSc CYBERSECURITY (OST) | IN PROGRESS</b></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= BAND A2: FEATURED WORK ================= -->
+    <section class="band" id="featured" data-band="A2" aria-labelledby="featured-title">
+      <div class="railhead">
+        <span class="rtag" aria-hidden="true">A2</span>
+        <span class="rname">Featured Work</span>
+        <span class="rlong"></span>
+        <span class="rmeta mono-sm">SELECTED PROJECTS | DOSSIERS ON THE PROJECTS PAGE</span>
+      </div>
+
+      <div class="wrap">
+        <p class="band-intro">
+          I'm not the gratest in programming, compared to my infrastructure skills, but with a lot of help i managed to
+          build a couple things that i always love to show off!
+        </p>
+
+        <div class="mgrid">
+          <article class="smod sm-4" aria-label="Highlighted project BarTab">
+            <header class="sm-head">
+              <span class="sidx">P-01</span>
+              <h4 class="sm-name">BarTab</h4>
+              <span class="sm-state sm-state-neutral"><i class="leddot leddot-unknown"
+                  aria-hidden="true"></i><em>iOS</em></span>
+            </header>
+            <div class="sm-body">
+              <p class="sm-desc">Crowdsourced drink prices for bars, reported by people standing at the bar. Full
+                SwiftUI app plus Supabase backend and a static website.</p>
+              <div class="sm-meta"><span class="sm-chip">Swift</span><span class="sm-chip">Supabase</span></div>
+              <div class="sm-meta"><a class="oplink" href="projects.html#bartab">Open dossier</a></div>
+            </div>
+          </article>
+
+          <article class="smod sm-4" aria-label="Highlighted project Tauche">
+            <header class="sm-head">
+              <span class="sidx">P-02</span>
+              <h4 class="sm-name">Tauche</h4>
+              <span class="sm-state sm-state-neutral"><i class="leddot leddot-unknown"
+                  aria-hidden="true"></i><em>Docker</em></span>
+            </header>
+            <div class="sm-body">
+              <p class="sm-desc">Self-hosted dive logbook with telemetry profiles, maps and a sightings dashboard.
+                Full-stack and containerized, with a public demo.</p>
+              <div class="sm-meta"><span class="sm-chip">Spring Boot</span><span class="sm-chip">React</span><span
+                  class="sm-chip">PostgreSQL</span></div>
+              <div class="sm-meta"><a class="oplink" href="projects.html#tauche">Open dossier</a></div>
+            </div>
+          </article>
+
+          <article class="smod sm-4" aria-label="Highlighted project ost-bot">
+            <header class="sm-head">
+              <span class="sidx">P-03</span>
+              <h4 class="sm-name">ost-bot</h4>
+              <span class="sm-state sm-state-neutral"><i class="leddot leddot-unknown"
+                  aria-hidden="true"></i><em>Discord</em></span>
+            </header>
+            <div class="sm-body">
+              <p class="sm-desc">Community bot for OST students: module lookup over hand-curated data, FAQ via
+                button-views, quotes board. Deployed under Docker.</p>
+              <div class="sm-meta"><span class="sm-chip">Python</span><span class="sm-chip">discord.py</span><span
+                  class="sm-chip">Docker</span></div>
+              <div class="sm-meta"><a class="oplink" href="projects.html#ost-bot">Open dossier</a></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= BAND A3: FACILITY INTRO ================= -->
+    <section class="band" id="facility" data-band="A3" aria-labelledby="facility-intro-title">
+      <div class="railhead">
+        <span class="rtag" aria-hidden="true">A3</span>
+        <span class="rname">The Facility</span>
+        <span class="rlong"></span>
+        <span class="rmeta mono-sm">HOME NETWORK | WORKSHOP AND HOSTING</span>
+      </div>
+
+      <div class="wrap">
+        <p class="band-intro">
+          This website unfortunately doesnt run on my homelab, because i'm not data-suicidal. But i still wanna show it
+          off. </p>
+        <p class="band-intro">
+          Take a look!!
+        </p>
+        </p>
+
+        <div class="mgrid">
+          <article class="smod sm-8 sm-carry" aria-label="Facility summary plate A4-01">
+            <header class="sm-head">
+              <span class="sidx">A4-01</span>
+              <h4 class="sm-name">Facility In One Plate</h4>
+              <span class="sm-state"><i class="leddot leddot-green" aria-hidden="true"></i><em>Mostly Operated
+                  lol</em></span>
+            </header>
+            <div class="sm-body">
+              <p class="sm-desc">
+                A Proxmox VE node carries the VMs and containers, the Unraid NAS carries
+                media and backups for the services, and UniFi switching keeps
+                three network segments apart. Remote access runs over Cloudflare Tunnel and
+                WireGuard, and DNS gets filtered with AdGuard.
+              </p>
+              <div class="sm-meta">
+                <span class="sm-chip">Proxmox VE</span>
+                <span class="sm-chip">Unraid</span>
+                <span class="sm-chip">UniFi</span>
+              </div>
+              <div class="sm-meta"><a class="oplink" href="infrastructure.html">Architecture, rack and services</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="smod sm-4" aria-label="Plate A4-02 documentation note">
+            <header class="sm-head">
+              <span class="sidx">A4-02</span>
+              <h4 class="sm-name">Why Document It</h4>
+            </header>
+            <div class="sm-body">
+              <p class="sm-desc">
+                I want people to see it, want to impress someone maybe :)
+                Well if you wanna know more always hmu.
+              </p>
+              <div class="sm-meta"><a class="oplink" href="infrastructure.html#architecture">Start with the map</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ================= DUMP STRIP (footer) ================= -->
+  <footer class="dump">
+    <div class="wrap dump-grid">
+      <span class="dump-brand">FACILITY OS 2005</span>
+      <span class="dump-note mono-sm">
+        PERSONAL DOCUMENTATION | ZONES: A1-B1-C1-D1-E1-F1-G1
+        | <a class="dumplink" href="mailto:fynn.gaechter@gmail.com">fynn.gaechter@gmail.com</a>
+        | <a class="dumplink" href="https://www.linkedin.com/in/fynn-g%C3%A4chter" target="_blank"
+          rel="noopener">LinkedIn</a>
+        | <a class="dumplink" href="https://github.com/Swissschoggi" target="_blank" rel="noopener">GitHub</a>
+      </span>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+
+</html>

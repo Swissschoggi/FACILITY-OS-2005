@@ -1,0 +1,77 @@
+# ==========================================================
+# FACILITY OS 2003 : gitignore
+# Goal: the repo contains ONLY what should be public.
+# Everything dev-only or private stays out.
+# ==========================================================
+
+# ----------------------------------------------------------
+# PRIVATE: source-of-truth handoff folder
+# Never commit: private LAN addresses, review notes, inventory, prompts.
+# It now lives OUTSIDE the webroot; guard the path in case it returns.
+# ----------------------------------------------------------
+opencode-homelab-handoff/
+opencode-homelab-handoff
+handoff/
+*.handoff
+
+# ----------------------------------------------------------
+# PRIVATE: drafts and data dumps that were never meant to be public
+# ----------------------------------------------------------
+PRIVATE_*
+*private*
+*-notes.md
+drafts/
+data-*.json
+inventory.*
+cv-private/
+*.secret
+secrets/
+.env
+.env.*
+!.env.example
+
+# ----------------------------------------------------------
+# NODE / PLAYWRIGHT dev tooling (not part of the site)
+# package.json exists only to install Playwright for testing;
+# the site itself has zero dependencies.
+# ----------------------------------------------------------
+node_modules/
+package.json
+package-lock.json
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ----------------------------------------------------------
+# TEST AND SCREENSHOT ARTIFACTS
+# ----------------------------------------------------------
+screenshots/
+tools/
+.screens/
+
+# ----------------------------------------------------------
+# OS + editor junk
+# ----------------------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vs/
+.vscode/*
+!.vscode/extensions.json
+*.swp
+*.swo
+*~
+
+# ----------------------------------------------------------
+# BUILD + CACHE JUNK
+# ----------------------------------------------------------
+*.log
+.cache/
+.tmp/
+tmp/
+.vercel/
+.netlify/
+dist/
+out/
+*.tsbuildinfo

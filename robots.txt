@@ -1,0 +1,13 @@
+# FACILITY OS 2003 : public portfolio crawler rules
+User-agent: *
+# personal content
+Allow: /
+# development artifacts and never-published folders
+Disallow: /node_modules/
+Disallow: /tools/
+Disallow: /screenshots/
+Disallow: /assets/
+Disallow: /package.json
+Disallow: /package-lock.json
+Disallow: /opencode-homelab-handoff/
+Disallow: /tmp/
